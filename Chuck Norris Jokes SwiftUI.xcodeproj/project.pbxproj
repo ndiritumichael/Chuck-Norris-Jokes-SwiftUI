@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04597E8627C8B2C900C5FF06 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04597E8527C8B2C900C5FF06 /* ApiService.swift */; };
 		0476AB0027C8150A0076250B /* Chuck_Norris_Jokes_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0476AAFF27C8150A0076250B /* Chuck_Norris_Jokes_SwiftUIApp.swift */; };
 		0476AB0227C8150A0076250B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0476AB0127C8150A0076250B /* ContentView.swift */; };
 		0476AB0427C8150E0076250B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0476AB0327C8150E0076250B /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04597E8527C8B2C900C5FF06 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		0476AAFC27C8150A0076250B /* Chuck Norris Jokes SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chuck Norris Jokes SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0476AAFF27C8150A0076250B /* Chuck_Norris_Jokes_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chuck_Norris_Jokes_SwiftUIApp.swift; sourceTree = "<group>"; };
 		0476AB0127C8150A0076250B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 				0476AB0127C8150A0076250B /* ContentView.swift */,
 				0476AB0327C8150E0076250B /* Assets.xcassets */,
 				0476AB0527C8150E0076250B /* Preview Content */,
+				04597E8527C8B2C900C5FF06 /* ApiService.swift */,
 			);
 			path = "Chuck Norris Jokes SwiftUI";
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			files = (
 				0476AB0227C8150A0076250B /* ContentView.swift in Sources */,
 				0476AB0027C8150A0076250B /* Chuck_Norris_Jokes_SwiftUIApp.swift in Sources */,
+				04597E8627C8B2C900C5FF06 /* ApiService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
