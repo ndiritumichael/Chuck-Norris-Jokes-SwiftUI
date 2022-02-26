@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
-
+import Foundation
 struct ContentView: View {
     
     @State private var jokes : [Joke] = []
+    var  buttontext :String {
+        if jokes.isEmpty { return "Fetch Jokes"} else{
+            return "Fetch More Jokes"}
+    }
     var body: some View {
         
         List{
@@ -18,34 +22,55 @@ struct ContentView: View {
             }
             
             ForEach(jokes){joke in
-                Text(joke.value)
+                VStack{
+                AsyncImage(url: URL(string : joke.icon_url))
+                    Text(joke.value)
+                }
+           
                 
             }
             
             
-            Button(action: {Task {
-                let (data, _) = try await URLSession.shared.data(from: URL(string:"https://api.chucknorris.io/jokes/random")!)
-                let decodedResponse = try? JSONDecoder().decode(Joke.self, from: data)
-              let   joke = decodedResponse!
-                jokes.append(joke)
-            }}){
+            Button(action: {
+                Task {
+                    guard let joke = await apiService() else {
+                        return
+                    }
+                    jokes.append(joke)
+                    
+                            }
+            }){
                 
                 
-                Label("Fetch Joke",systemImage: "command.circle.fill")
+                Label(buttontext,systemImage: "command.circle.fill")
             }.labelStyle(.titleAndIcon)
                 .buttonStyle(.bordered)
                 
     }
+      
+        .onAppear(perform: {
+            Task{
+                guard let joke = await apiService() else {
+                    return
+                }
+                jokes.append(joke)
+            }
+            
+        })
     }
     
-    struct Joke: Codable,Identifiable {
-        let id = UUID()
-        let value: String
-    }
+   
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
+}
+
+struct Joke: Codable,Identifiable {
+let id = UUID()
+    let value: String
+    let icon_url:String
+    
 }

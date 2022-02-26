@@ -11,7 +11,12 @@ import SwiftUI
 struct Chuck_Norris_Jokes_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
+            NavigationView{
             ContentView()
+                    .navigationTitle("Norris Jokes")
+                        .navigationBarTitleDisplayMode(.large)
+                        
+            }
         }
     }
 }
