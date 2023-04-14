@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Foundation
+
 struct ContentView: View {
     
     @State private var jokes : [Joke] = []
@@ -14,11 +15,16 @@ struct ContentView: View {
         if jokes.isEmpty { return "Fetch Jokes"} else{
             return "Fetch More Jokes"}
     }
+    @State private var errorMessage : String? = nil
     var body: some View {
         
         List{
             if jokes.isEmpty{
                 Text("No Jokes Loaded Yet")
+            }
+            if errorMessage != nil{
+                Text("\(errorMessage!)")
+                
             }
             
             ForEach(jokes){joke in
@@ -32,13 +38,7 @@ struct ContentView: View {
             
             
             Button(action: {
-                Task {
-                    guard let joke = await apiService() else {
-                        return
-                    }
-                    jokes.append(joke)
-                    
-                            }
+                fetchJokes()
             }){
                 
                 
@@ -49,14 +49,27 @@ struct ContentView: View {
     }
       
         .onAppear(perform: {
-            Task{
-                guard let joke = await apiService() else {
-                    return
-                }
-                jokes.append(joke)
-            }
-            
+           
+            fetchJokes()
         })
+    }
+    
+    func fetchJokes ()  {
+    Task{
+  
+        let result =  await apiService()
+        switch result {
+        case .success(let joke):
+            jokes.append(joke)
+        case .failure(let failure):
+            errorMessage = failure.message
+           
+        }
+        
+         
+       
+        }
+        
     }
     
    
@@ -68,9 +81,4 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct Joke: Codable,Identifiable {
-let id = UUID()
-    let value: String
-    let icon_url:String
-    
-}
+
