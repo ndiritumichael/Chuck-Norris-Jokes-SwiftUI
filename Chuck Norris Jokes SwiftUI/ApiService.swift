@@ -15,7 +15,7 @@ func apiService()  async -> Result<Joke,ApiError>{
            // fatalError("something is wrong")
             let decodedError  = try? JSONDecoder().decode(ApiError.self, from: data)
             
-            debugPrint(decodedError)
+        
             if(decodedError != nil){
                 return Result.failure(decodedError!)
             }
